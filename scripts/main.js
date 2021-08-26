@@ -23,34 +23,29 @@ function playRound(playerSelection, computerSelection) {
   const cleanPlayerSelection = playerSelection.trim().toLowerCase()
   const cleanCPUSelection = computerSelection.trim().toLowerCase()
   if (cleanPlayerSelection === ROCK && cleanCPUSelection === PAPER) {
-    return `You Lose! ${cleanCPUSelection} beats ${cleanPlayerSelection}`
+    return displayWinnerMsg(false, cleanPlayerSelection, cleanCPUSelection)
   } else if (cleanPlayerSelection === ROCK && cleanCPUSelection === SCISSORS) {
-    return `You Win! ${cleanPlayerSelection} beats ${cleanCPUSelection}`
+    return displayWinnerMsg(true, cleanPlayerSelection, cleanCPUSelection)
   } else if (cleanPlayerSelection === PAPER && cleanCPUSelection === ROCK) {
-    return `You Win! ${cleanPlayerSelection} beats ${cleanCPUSelection}`
+    return displayWinnerMsg(true, cleanPlayerSelection, cleanCPUSelection)
   } else if (cleanPlayerSelection === PAPER && cleanCPUSelection === SCISSORS) {
-    return `You lose! ${cleanCPUSelection} beats ${cleanPlayerSelection}`
+    return displayWinnerMsg(false, cleanPlayerSelection, cleanCPUSelection)
   } else if (cleanPlayerSelection === SCISSORS && cleanCPUSelection === ROCK) {
-    return `You lose! ${cleanCPUSelection} beats ${cleanPlayerSelection}`
+    return displayWinnerMsg(false, cleanPlayerSelection, cleanCPUSelection)
   } else if (cleanPlayerSelection === SCISSORS && cleanCPUSelection === PAPER) {
-    return `You Win! ${cleanPlayerSelection} beats ${cleanCPUSelection}`
+    return displayWinnerMsg(true, cleanPlayerSelection, cleanCPUSelection)
   } else {
     return `It\' a Tie!`
   }
-}
-
-function displayWinnerMsg(userWin, userChoice, CPUChoice) {
-  if (!userWin) {
-    return `You lose! ${CPUChoice} beats ${userChoice}`
-  }
-  return `You Win! ${userChoice} beats ${CPUChoice}`
 }
 
 /**
  * PLAY 5 GAME of rock  paper scissors
  */
 function game() {
-  return playRound(playerSelection, computerSelection)
+  const result = playRound(playerSelection, computerSelection)
+  console.log(result)
+  alert(result)
 }
 
 game()

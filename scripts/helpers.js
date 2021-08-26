@@ -26,3 +26,16 @@ function checkUserInput(userInput) {
   }
   return true
 }
+
+/**
+ * Display the message who win the game
+ * @param userWin boolean if user win or not
+ * @param userChoice string user selection rock paper scissors
+ * @param CPUChoice string CPU selection rocker paper scissors
+ */
+function displayWinnerMsg(userWin, userChoice, CPUChoice) {
+  if (!userWin) {
+    return `You lose! ${CPUChoice} beats ${userChoice}`
+  }
+  return `You Win! ${userChoice} beats ${CPUChoice}`
+}
