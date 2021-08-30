@@ -47,7 +47,7 @@ function playRound(playerSelection, computerSelection) {
 function game() {
   const result = playRound(playerSelection, computerSelection)
   console.log(result)
-  alert(result)
+  // alert(result)
 }
 
 game()
