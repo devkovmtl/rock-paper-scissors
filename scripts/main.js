@@ -1,8 +1,10 @@
-let playerSelection = prompt('Choose between : Rock, Paper or Scissors')
-// User Choice
-while (!checkUserInput(playerSelection)) {
-  playerSelection = prompt('Choose between : Rock, Paper or Scissors')
-}
+// let playerSelection = prompt('Choose between : Rock, Paper or Scissors')
+// // User Choice
+// while (!checkUserInput(playerSelection)) {
+//   playerSelection = prompt('Choose between : Rock, Paper or Scissors')
+// }
+
+let playerSelection = 'rock'
 
 // Computer Choice
 const computerSelection = computerPlay()
