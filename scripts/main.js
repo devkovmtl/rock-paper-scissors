@@ -1,10 +1,20 @@
-// let playerSelection = prompt('Choose between : Rock, Paper or Scissors')
-// // User Choice
-// while (!checkUserInput(playerSelection)) {
-//   playerSelection = prompt('Choose between : Rock, Paper or Scissors')
-// }
+// User Choice
+let playerSelection
 
-let playerSelection = 'rock'
+function onClickPlayerHandCard(e) {
+  const playerChoice =
+    e.target.id ||
+    e.target.getAttribute('data-img') ||
+    e.target.getAttribute('data-title')
+  playerSelection = playerChoice.split('-')[1]
+  console.log(playerChoice)
+  game()
+}
+
+const playerHandCards = document.querySelectorAll('#player-choice-row .card')
+playerHandCards.forEach((playerHandCard) =>
+  playerHandCard.addEventListener('click', onClickPlayerHandCard)
+)
 
 // Computer Choice
 const computerSelection = computerPlay()
@@ -47,7 +57,4 @@ function playRound(playerSelection, computerSelection) {
 function game() {
   const result = playRound(playerSelection, computerSelection)
   console.log(result)
-  // alert(result)
 }
-
-game()
