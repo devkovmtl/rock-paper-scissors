@@ -17,7 +17,9 @@ function onClickPlayerHandCard(e) {
   // console.log(playerChoice)
   onSelectedCard()
 
-  game()
+  if (playerSelection) {
+    game()
+  }
 }
 
 function onSelectedCard() {
@@ -30,12 +32,12 @@ function onSelectedCard() {
     card.classList.remove('selected')
   })
 
-  const cardTitles = document.querySelectorAll('.card h3')
+  const cardTitles = document.querySelectorAll('#player-choice-row .card h3')
   cardTitles.forEach((cardTitle) => {
     cardTitle.classList.remove('selected-title')
   })
 
-  const cardImgs = document.querySelectorAll('.card img')
+  const cardImgs = document.querySelectorAll('#player-choice-row .card img')
   cardImgs.forEach((cardImg) => {
     const cardName = cardImg.getAttribute('data-img').split('-')[1]
     cardImg.setAttribute('src', `images/${cardName}-white.png`)
@@ -59,10 +61,9 @@ function onSelectedCard() {
   span.textContent = ` ${playerSelection.toUpperCase()}`
   h2.innerHTML = `Your choice: `
   h2.appendChild(span)
-}
 
-// Computer Choice
-const computerSelection = computerPlay()
+  return
+}
 
 /**
  * Return randomly 'Rock', 'Paper', 'Scissors'
@@ -70,6 +71,44 @@ const computerSelection = computerPlay()
 function computerPlay() {
   const computerChoices = [ROCK, PAPER, SCISSORS]
   const indexChoice = getRandomInt(3)
+  const computerSelection = computerChoices[indexChoice].toLowerCase()
+
+  let computerCardChoices = document.querySelectorAll('#cpu-choice-row .card')
+  // REMOVE NEON IMAGE COLOR SELECTED
+  computerCardChoices.forEach((card) => {
+    card.classList.remove('selected')
+  })
+
+  const cardTitles = document.querySelectorAll('#cpu-choice-row .card h3')
+  cardTitles.forEach((cardTitle) => {
+    cardTitle.classList.remove('selected-title')
+  })
+
+  const cardImgs = document.querySelectorAll('#cpu-choice-row .card img')
+  cardImgs.forEach((cardImg) => {
+    const cardName = cardImg.getAttribute('data-img').split('-')[1]
+    cardImg.setAttribute('src', `images/${cardName}-white.png`)
+  })
+
+  // ADD NEON IMAGE COLOR SELECTED
+  let cpuCardDiv = document.querySelector(`div#cpu-${computerSelection}`)
+  cpuCardDiv.classList.add('selected')
+
+  let imgCard = document.querySelector(`div#cpu-${computerSelection} img`)
+  imgCard.setAttribute('src', `images/${computerSelection}-neon.png`)
+
+  let h3 = document.querySelector(`div#cpu-${computerSelection} h3`)
+  h3.classList.add('selected-title')
+
+  // GRAB the h2
+  let h2 = document.querySelector('#cpu-selection-row h2')
+  let span = document.createElement('span')
+  span.style.color = 'rgb(204, 255, 2)'
+  span.style.fontSize = '18px'
+  span.textContent = ` ${computerSelection.toUpperCase()}`
+  h2.innerHTML = `CPU choice: `
+  h2.appendChild(span)
+
   return capitalize(computerChoices[indexChoice])
 }
 
@@ -100,6 +139,14 @@ function playRound(playerSelection, computerSelection) {
  * PLAY 5 GAME of rock  paper scissors
  */
 function game() {
+  // Computer Choice
+  const computerSelection = computerPlay()
   const result = playRound(playerSelection, computerSelection)
+  resetGame()
   console.log(result)
+}
+
+function resetGame() {
+  console.log('Reset Game')
+  const divShadow = document.createElement('div')
 }

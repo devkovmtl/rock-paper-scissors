@@ -100,8 +100,8 @@ img {
 
 #player-choice-row .card:hover {
   cursor: pointer;
-  box-shadow: 0 10px 20px rgba(204, 255, 2, 0.15),
-    0 6px 6px rgba(204, 255, 2, 0.23);
+  box-shadow: 0 14px 28px rgba(204, 255, 2, 0.38),
+    0 10px 10px rgba(204, 255, 2, 0.35);
   border: rgb(204, 255, 2) 1px solid;
 }
 
