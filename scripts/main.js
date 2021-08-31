@@ -50,6 +50,15 @@ function onSelectedCard() {
 
   let h3 = document.querySelector(`div#player-${playerSelection} h3`)
   h3.classList.add('selected-title')
+
+  // GRAB the h2
+  let h2 = document.querySelector('#player-selection-row h2')
+  let span = document.createElement('span')
+  span.style.color = 'rgb(204, 255, 2)'
+  span.style.fontSize = '18px'
+  span.textContent = ` ${playerSelection.toUpperCase()}`
+  h2.innerHTML = `Your choice: `
+  h2.appendChild(span)
 }
 
 // Computer Choice
