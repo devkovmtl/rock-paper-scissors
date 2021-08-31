@@ -1,20 +1,56 @@
 // User Choice
 let playerSelection
 
+const playerHandCards = document.querySelectorAll('#player-choice-row .card')
+playerHandCards.forEach((playerHandCard) => {
+  playerHandCard.addEventListener('click', onClickPlayerHandCard)
+})
+
 function onClickPlayerHandCard(e) {
   const playerChoice =
     e.target.id ||
     e.target.getAttribute('data-img') ||
     e.target.getAttribute('data-title')
+
   playerSelection = playerChoice.split('-')[1]
-  console.log(playerChoice)
+
+  // console.log(playerChoice)
+  onSelectedCard()
+
   game()
 }
 
-const playerHandCards = document.querySelectorAll('#player-choice-row .card')
-playerHandCards.forEach((playerHandCard) =>
-  playerHandCard.addEventListener('click', onClickPlayerHandCard)
-)
+function onSelectedCard() {
+  if (!playerSelection) {
+    return
+  }
+
+  // REMOVE NEON IMAGE COLOR SELECTED
+  playerHandCards.forEach((card) => {
+    card.classList.remove('selected')
+  })
+
+  const cardTitles = document.querySelectorAll('.card h3')
+  cardTitles.forEach((cardTitle) => {
+    cardTitle.classList.remove('selected-title')
+  })
+
+  const cardImgs = document.querySelectorAll('.card img')
+  cardImgs.forEach((cardImg) => {
+    const cardName = cardImg.getAttribute('data-img').split('-')[1]
+    cardImg.setAttribute('src', `images/${cardName}-white.png`)
+  })
+
+  // ADD NEON IMAGE COLOR SELECTED
+  let playerCardDiv = document.querySelector(`div#player-${playerSelection}`)
+  playerCardDiv.classList.add('selected')
+
+  let imgCard = document.querySelector(`div#player-${playerSelection} img`)
+  imgCard.setAttribute('src', `images/${playerSelection}-neon.png`)
+
+  let h3 = document.querySelector(`div#player-${playerSelection} h3`)
+  h3.classList.add('selected-title')
+}
 
 // Computer Choice
 const computerSelection = computerPlay()
