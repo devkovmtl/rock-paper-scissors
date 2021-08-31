@@ -1,5 +1,6 @@
 // User Choice
 let playerSelection
+let toggleModal = false
 
 const playerHandCards = document.querySelectorAll('#player-choice-row .card')
 playerHandCards.forEach((playerHandCard) => {
@@ -135,6 +136,9 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
+const modalContainer = document.querySelector('div#modal-container')
+modalContainer.addEventListener('click', removeModal)
+
 /**
  * PLAY 5 GAME of rock  paper scissors
  */
@@ -142,11 +146,36 @@ function game() {
   // Computer Choice
   const computerSelection = computerPlay()
   const result = playRound(playerSelection, computerSelection)
-  resetGame()
+  setTimeout(resetGame, 500)
   console.log(result)
 }
 
 function resetGame() {
   console.log('Reset Game')
-  const divShadow = document.createElement('div')
+  modalContainer.style.display = 'block'
+
+  const cards = document.querySelectorAll('.row .card')
+  cards.forEach((card) => {
+    card.classList.remove('selected')
+  })
+
+  const cardTitles = document.querySelectorAll('.card h3')
+  cardTitles.forEach((cardTitle) => {
+    cardTitle.classList.remove('selected-title')
+  })
+
+  const cardImgs = document.querySelectorAll('.card img')
+  cardImgs.forEach((cardImg) => {
+    const cardName = cardImg.getAttribute('data-img').split('-')[1]
+    cardImg.setAttribute('src', `images/${cardName}-white.png`)
+  })
+
+  h2 = document.querySelector('#player-selection-row h2')
+  h2.textContent = `PLEASE CHOOSE:`
+  h2 = document.querySelector('#cpu-selection-row h2')
+  h2.textContent = `COMPUTER CHOICE:`
+}
+
+function removeModal(e) {
+  modalContainer.style.display = 'none'
 }
