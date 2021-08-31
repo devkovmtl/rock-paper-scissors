@@ -146,14 +146,18 @@ function game() {
   // Computer Choice
   const computerSelection = computerPlay()
   const result = playRound(playerSelection, computerSelection)
-  setTimeout(resetGame, 500)
+  setTimeout(() => resetGame(result), 500)
   console.log(result)
 }
 
-function resetGame() {
+function resetGame(result) {
   console.log('Reset Game')
   modalContainer.style.display = 'block'
+  const modalContent = document.querySelector('.alert-card-content')
+  modalContent.textContent = result
+}
 
+function removeModal(e) {
   const cards = document.querySelectorAll('.row .card')
   cards.forEach((card) => {
     card.classList.remove('selected')
@@ -174,8 +178,5 @@ function resetGame() {
   h2.textContent = `PLEASE CHOOSE:`
   h2 = document.querySelector('#cpu-selection-row h2')
   h2.textContent = `COMPUTER CHOICE:`
-}
-
-function removeModal(e) {
   modalContainer.style.display = 'none'
 }
