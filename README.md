@@ -5,7 +5,7 @@ from the Odin Project\'s [curriculum]
 
 Simple Rock Paper Scissors game
 
-## Build
+## Build with:
 
 - HTML
 - CSS
