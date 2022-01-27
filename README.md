@@ -5,6 +5,8 @@ from the Odin Project\'s [curriculum]
 
 Simple Rock Paper Scissors game
 
+The project can be seen: [here](https://devkovmtl.github.io/rock-paper-scissors/)
+
 ## Build with:
 
 - HTML
